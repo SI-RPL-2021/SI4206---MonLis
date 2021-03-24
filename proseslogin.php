@@ -1,7 +1,7 @@
 <?php
 include("config");
 $emailmonlis = $_POST['emailmonlis'];
-$password = $_POST['password']
+$password = $_POST['password'];
 $query = "SELECT *  FROM users WHERE emailmonlis- '$emailmonlis' AND password - '$password'";
 $queryDB = mysqli_num_rows($db, $query);
 $check = mysqli_num_rows($queryDB);
