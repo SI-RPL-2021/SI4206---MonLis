@@ -92,7 +92,7 @@
             <h1>Login</h1>
 
             <!--text-->
-            <h2>to continue to Monlis</h2>
+            <h2>Monlis</h2>
             <br>
 
             <!--email-->
