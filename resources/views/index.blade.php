@@ -44,7 +44,7 @@
     <div class="container d-flex">
 
       <div class="logo mr-auto">
-        <img src="image/logo.png" alt="" width="70px" height="40px" class="d-inline-block align-top">
+        <img src="{{asset('image/logo.png')}}" alt="" width="70px" height="40px" class="d-inline-block align-top">
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>

@@ -19,5 +19,11 @@ class UserSeeder extends Seeder
             'password'=> bcrypt('rivero'),
             'nohp'=> '0812312323',
         ]);
+        DB::table('users')->insert([
+            'name'=> 'zaelani',
+            'email'=> 'mzaelani@gmail.com',
+            'password'=> bcrypt('zaehomo1'),
+            'nohp'=> '0823232231',
+        ]);
     }
 }
