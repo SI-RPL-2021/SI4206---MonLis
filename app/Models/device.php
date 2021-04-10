@@ -9,4 +9,14 @@ class device extends Model
 {
     use HasFactory;
     protected $table="devices";
+    public function User(){
+        return $this->belongsTo('App\Models\User');
+    }
+    protected $fillable = [
+        'id',
+        'user_id',
+        'device_name',
+        'device_version',
+        'deskripsi',
+    ];
 }

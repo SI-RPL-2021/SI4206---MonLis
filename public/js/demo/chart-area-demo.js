@@ -47,9 +47,38 @@ var myLineChart = new Chart(ctx, {
       pointHitRadius: 10,
       pointBorderWidth: 2,
       data: [9000, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+    },{
+      label: "yey",
+      lineTension: 0.3,
+      backgroundColor: "rgba(222, 68, 68, 0.05)",
+      borderColor: "rgba(7222, 68, 68, 1)",
+      pointRadius: 3,
+      pointBackgroundColor: "rgba(222, 68, 68, 1)",
+      pointBorderColor: "rgba(222, 68, 68, 1)",
+      pointHoverRadius: 3,
+      pointHoverBackgroundColor: "rgba(222, 68, 68, 1)",
+      pointHoverBorderColor: "rgba(222, 68, 68, 1)",
+      pointHitRadius: 10,
+      pointBorderWidth: 2,
+      data: [1000, 30000, 5000, 15000, 10000, 20000, 15000, 65000, 10000, 20000, 15000, 10000],
     }],
   },
   options: {
+    plugins: {
+      autocolors: false,
+      annotation: {
+        annotations: {
+          line1: {
+            type: 'line',
+            yMin: 60,
+            yMax: 60,
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 2,
+          }
+        }
+      }
+    },
+
     maintainAspectRatio: false,
     layout: {
       padding: {
@@ -114,5 +143,16 @@ var myLineChart = new Chart(ctx, {
         }
       }
     }
-  }
+  },
+  
 });
+var chartConfig = {
+            type: 'line',
+            options: {
+                elements: {
+                    point:{
+                        radius: 0
+                    }
+                }
+            }
+        }

@@ -1,0 +1,99 @@
+{
+  "_from": "chartjs-plugin-annotation@next",
+  "_id": "chartjs-plugin-annotation@1.0.0-rc",
+  "_inBundle": false,
+  "_integrity": "sha512-ielNXFh3DSRu2FkM4fgQvFwKP8EAzfUYBb8ZuQoobSK89HMUyDfoCcDlw/uCFoaL3uuhA9YBrbEdfi6ZNZUc7g==",
+  "_location": "/chartjs-plugin-annotation",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "chartjs-plugin-annotation@next",
+    "name": "chartjs-plugin-annotation",
+    "escapedName": "chartjs-plugin-annotation",
+    "rawSpec": "next",
+    "saveSpec": null,
+    "fetchSpec": "next"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/chartjs-plugin-annotation/-/chartjs-plugin-annotation-1.0.0-rc.tgz",
+  "_shasum": "8eb16169de4f9bf69e6bbae41caf03476dca60ad",
+  "_spec": "chartjs-plugin-annotation@next",
+  "_where": "C:\\xampp\\htdocs\\monlisgit\\SI4206---MonLis",
+  "author": {
+    "name": "Evert Timberg",
+    "email": "evert.timberg@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/chartjs/chartjs-plugin-annotation/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Annotations for Chart.js",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "chart.js": "^3.0.0-rc.3",
+    "chartjs-plugin-autocolors": "0.0.3",
+    "chartjs-test-utils": "^0.2.2",
+    "concurrently": "^6.0.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.22.0",
+    "eslint-config-chartjs": "^0.3.0",
+    "eslint-plugin-es": "^4.1.0",
+    "eslint-plugin-html": "^6.1.2",
+    "karma": "^6.3.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage": "^2.0.3",
+    "karma-firefox-launcher": "^2.1.0",
+    "karma-jasmine": "^4.0.1",
+    "karma-jasmine-html-reporter": "^1.5.4",
+    "karma-rollup-preprocessor": "^7.0.7",
+    "markdownlint-cli2": "0.0.15",
+    "pixelmatch": "^5.2.1",
+    "rollup": "^2.42.3",
+    "rollup-plugin-istanbul": "^3.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.2.3",
+    "vuepress": "^1.8.2",
+    "vuepress-plugin-redirect": "^1.2.5",
+    "vuepress-theme-chartjs": "^0.1.0"
+  },
+  "files": [
+    "dist/*.js",
+    "types/*.d.ts"
+  ],
+  "homepage": "https://www.chartjs.org/chartjs-plugin-annotation/index",
+  "license": "MIT",
+  "main": "dist/chartjs-plugin-annotation.js",
+  "module": "dist/chartjs-plugin-annotation.esm.js",
+  "name": "chartjs-plugin-annotation",
+  "peerDependencies": {
+    "chart.js": "^3.0.0-rc.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chartjs/chartjs-plugin-annotation.git"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "karma start --auto-watch --no-single-run --browsers chrome",
+    "docs": "npm run build && vuepress build docs --dest dist/docs",
+    "docs:dev": "npm run build && vuepress dev docs",
+    "lint": "concurrently \"npm:lint-*\"",
+    "lint-js": "eslint \"old_samples/**/*.html\" \"test/**/*.js\" \"src/**/*.js\"",
+    "lint-md": "markdownlint-cli2 \"**/*.md\" \"**/*.mdx\" \"#**/node_modules\"",
+    "lint-types": "eslint \"types/**/*.ts\" && tsc -p types/tests/",
+    "test": "cross-env NODE_ENV=test concurrently \"npm:test-*\"",
+    "test-karma": "karma start --auto-watch --single-run",
+    "test-lint": "npm run lint",
+    "test-types": "tsc -p types/tests/"
+  },
+  "types": "types/index.d.ts",
+  "version": "1.0.0-rc"
+}

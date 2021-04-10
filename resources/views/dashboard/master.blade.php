@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>Dashboard user</title>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -19,7 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -328,6 +328,8 @@
         </div>
 
         <!-- Bootstrap core JavaScript-->
+        <script src="vendor/chart.js/Chart.min.js"></script>
+
         <script src="vendor/jquery/jquery.min.js"></script>
 
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -337,13 +339,15 @@
 
         <!-- Custom scripts for all pages-->
         <script src="js/sb-admin-2.min.js"></script>
+        <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
 
         <!-- Page level plugins -->
-        <script src="vendor/chart.js/Chart.min.js"></script>
 
         <!-- Page level custom scripts -->
-
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="js/demo/chart-pie-demo.js"></script>
+        
 
         @stack('js')
 </body>

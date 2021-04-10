@@ -20,6 +20,12 @@ class DeviceSeeder extends Seeder
             'deskripsi'=> 'Memonitor automatis setiap harinya',
         ]);
         DB::table('devices')->insert([
+            'user_id'=> '1',
+            'device_name'=> 'Alat setrum ceker',
+            'device_version'=> 'DM003',
+            'deskripsi'=> 'Memonitor automatis setiap harinya',
+        ]);
+        DB::table('devices')->insert([
             'user_id'=> '2',
             'device_name'=> 'Alat Monitor listrik',
             'device_version'=> 'KM001',

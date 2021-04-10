@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             DeviceSeeder::class,
-            HistorySeeder::class,
+            HistoryDailySeeder::class,
+            HistoryHoursSeeder::class,
         ]);
     }
 }

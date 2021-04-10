@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHistoriesTable extends Migration
+class CreateHistoryDailiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('histories', function (Blueprint $table) {
+        Schema::create('history_dailies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('device_id')->constrained('devices')->onUpdate('cascade')->onDelete('cascade');
-            $table->double('pemakaian');
+            $table->double('pemakaian_energi');
             $table->date('tanggal_pemakaian');
         });
     }
@@ -28,6 +28,6 @@ class CreateHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('histories');
+        Schema::dropIfExists('history_dailies');
     }
 }
