@@ -59,10 +59,21 @@ class HistoryController extends Controller
         # laravel collection to array
         ->toArray();
 
-        $tanggal=[];
-        foreach ($MonthData as $index => $person) {
-            $tanggal[] ="Week-".$index;
-        }
+          #get data first date
+          $week_first_day=history_daily::whereIn('device_id',$id_device)->whereYear('tanggal_pemakaian',now()->year)
+          ->WhereMonth('tanggal_pemakaian',now()->month)
+          ->orderBy('tanggal_pemakaian','ASC')
+          ->get()
+          ->groupBy(function($date) {
+              return Carbon::parse($date->tanggal_pemakaian)->format('W');
+          })->map(function ($row) {
+              return $row->pluck('tanggal_pemakaian')->first();
+          })
+          ->toArray();
+          $tanggal=[];
+          foreach ($week_first_day as $key => $value) {
+              $tanggal[] = date('d F Y',strtotime($value))." (week- $key)";
+          }
         #associative array into an indexed array
         $pemakaian = array_values($MonthData);
     
@@ -158,8 +169,20 @@ class HistoryController extends Controller
                     // dd($pemakaian_sebelum); 
                 }
             }
-            
-          
-            return view('dashboard.history',['pemakaian'=> $pemakaian, 'tanggal'=> $tanggal, 'dropdown_item'=>$dropdown_item,'pemakaian_sebelum'=> $pemakaian_sebelum]);
+        #################################################################
+            $avg_year=history_daily::whereIn('device_id',$id_device)
+            ->whereBetween('tanggal_pemakaian',[now()->subYear(1), now()])
+            ->orderBy('tanggal_pemakaian','ASC')
+            ->get()
+            #Grouping by week
+            ->groupBy(function($date) {
+                return Carbon::parse($date->tanggal_pemakaian)->format('m');
+            })
+            #Summing a value and grouping by date on a eloquent into collection
+            ->map(function ($row) {
+                return $row->sum('pemakaian_energi');
+            })->avg();
+
+            return view('dashboard.history',['pemakaian'=> $pemakaian, 'tanggal'=> $tanggal, 'dropdown_item'=>$dropdown_item,'pemakaian_sebelum'=> $pemakaian_sebelum,'avg_year'=> $avg_year]);
         }
 }

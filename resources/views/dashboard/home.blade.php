@@ -1,5 +1,22 @@
 @extends('dashboard.master')
 @section('content')
+@push('css')
+<style>
+.tooltip-inner {
+    color: #fff;
+    background: #FF9900;
+}.tooltip-arrow {
+  border-bottom-color: #000000; /* black */
+  border-width: 0 5px 5px;
+}
+</style>
+@endpush
+<script>
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl);
+})
+</script>
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Content Row -->
@@ -15,6 +32,14 @@
                         <div class="col mr-5">
                             <div class="h3 mb-0 font-weight-bold text-gray-900 text-nowrap  ">{{$today}} kWh</div>
                             <div class=" pb-2 text-gray-500">amount of usage electricity today</div>
+                            <div class="row" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Persentase perbandingan dengan hari sebelumnya">
+                                <div class="col-md-2">
+                                    <img class="img" src="{{ $notif_today <=0 ? ($notif_today <=-10 ? asset('image/down_green.svg') : asset('image/netral_gray_down.svg')): ($notif_today >=10 ? asset('image/up_red.svg') : asset('image/netral_gray_up.svg'))  }}"></img>
+                                </div>
+                                <div class="col-md-10" >
+                                    <p style="{{$notif_today <=-10 ? 'color:#27AE60' : ($notif_today >=10 ? 'color:#DE4444' : 'color:#BDBDBD') }}">{{abs($notif_today)}}%</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -25,13 +50,21 @@
             <div class="card border-left-primary shadow h-100 py-2 rounded">
                 <div class="card-body">
                     <div class="font-weight-bold text-lg mb-4" style="color:black">Usage This Month</div>
-                    <div class="row">
+                    <div class="row" >
                         <div class="col">
                             <img class="img-fluid" src="{{asset('image/vec2.png')}}"></img>
                         </div>
                         <div class="col mr-5">
                             <div class="h3 mb-0 font-weight-bold text-gray-900 text-nowrap">{{$month}} kWh</div>
                             <div class="pb-2 text-gray-500">amount of usage electricity this month</div>
+                            <div class="row" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Persentase perbandingan dengan bulan sebelumnya">
+                                <div class="col-md-2">
+                                    <img class="img" src="{{ $notif_month <=0 ? asset('image/down_green.svg') : asset('image/up_red.svg')}}"></img>
+                                </div>
+                                <div class="col-md-10">
+                                    <p style="{{$notif_month <=0 ? 'color:#27AE60' : 'color:#DE4444'}}">{{abs($notif_month)}}%</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -46,9 +79,17 @@
                         <div class="col">
                             <img class="img-fluid" src="{{asset('image/vec3.png')}}"></img>
                         </div>
-                        <div class="col mr-5">
+                        <div class="col mr-5 pl-0">
                             <div class="h3 mb-0 font-weight-bold text-gray-900 text-nowrap">{{$week}} kWh</div>
                             <div class="pb-2 text-gray-500">amount of usage electricity this week</div>
+                            <div class="row" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Persentase perbandingan dengan minggu sebelumnya">
+                            <div class="col-md-2">
+                                    <img class="img" src="{{ $notif_week <=0 ? asset('image/down_green.svg') : asset('image/up_red.svg')}}"></img>
+                                </div>
+                                <div class="col-md-10">
+                                    <p style="{{$notif_week <=0 ? 'color:#27AE60' : 'color:#DE4444'}}">{{abs($notif_week)}}%</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -68,7 +109,9 @@
                     <h6 class="m-0 font-weight-bold text-primary">Pemakaian Terakhir</h6>
                     <div class="dropdown">Show
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false"><span class="caret font-weight-bold text-gray-900 " style="color:black">{{$dropdown_item}}</span>
+                            aria-haspopup="true" aria-expanded="false"><span
+                                class="caret font-weight-bold text-gray-900 "
+                                style="color:black">{{$dropdown_item}}</span>
                             <!-- <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i> -->
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
@@ -89,11 +132,6 @@
                 </div>
             </div>
         </div>
-        <!-- <script>
-     $('.dropdown-item').click(function(){
-$('#dropdownMenuLink').html($(this).text() + '<span class="caret"></span>')
-})
-</script> -->
         <!-- Pie Chart -->
         <div class="col-xl-4 col-lg-5">
             <div class="card shadow mb-4">
@@ -137,6 +175,11 @@ $('#dropdownMenuLink').html($(this).text() + '<span class="caret"></span>')
     </div>
 </div>
 @push('js')
+<script>var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+</script>
 <script>
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.fonts = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -251,7 +294,8 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + 'kWh';
+          var kek = chart.datasets[tooltipItem.datasetIndex].first_day || '';
+          return datasetLabel + ': ' + tooltipItem.yLabel + ' kWh';
         }
       }
     }

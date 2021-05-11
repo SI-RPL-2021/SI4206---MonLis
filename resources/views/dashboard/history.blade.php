@@ -11,14 +11,24 @@
         <div class="dropdown">
             <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-                <i class="fas fa-filter fa-2x"></i>
+                <i class="fas fa-filter fa-2x"></i> 
             </button>
+            @if(request()->filter == null)
+            FILTER
+            @endif
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item"
                     href='{{route("history",["sort"=> request()->sort,"filter"=>"averages"])}}'>Average</a>
+            @if(request()->sort == "month")
+            <a class="dropdown-item"
+                    href='{{route("history",["sort"=> request()->sort,"test"=>"test"])}}'>test</a>
+            @endif
             </div>
             @if(request()->filter != null)
             <button class="btn btn-secondary">Average Typically<a type="button" href ='{{route("history",["sort"=> request()->sort,"filter"=>NULL])}}' class="btn-close" style="height:0em;"></a></button>
+            @endif
+            @if(request()->test != null)
+            <button class="btn btn-secondary">Average 3 Period<a type="button" href ='{{route("history",["sort"=> request()->sort,"filter"=>NULL])}}' class="btn-close" style="height:0em;"></a></button>
             @endif
         </div>
       </div>
@@ -69,8 +79,54 @@
             </div>
         </div>
     </div>
-
+    
     @push('js')
+    @if(request()->test != NULL)
+<canvas id="myChart" width="400" height="400"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.0.1/chartjs-plugin-annotation.min.js"></script>
+
+<script>
+const options = {
+  maintainAspectRatio: false,
+  plugins: {
+    autocolors: false,
+    annotation: {
+      annotations: {
+        line1: {
+          type: 'line',
+          yMin: {!!json_encode($avg_year)!!},
+          yMax: {!!json_encode($avg_year)!!},
+          borderColor: 'rgb(255, 99, 132)',
+          borderWidth: 2,
+        }
+      }
+    }
+  }
+};
+const config = {
+  type: 'line',
+  data: {
+    labels:{!!json_encode($tanggal)!!},
+    datasets: [{
+      label: 'My First Dataset',
+      data: {!!json_encode($pemakaian)!!},
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1
+    }]
+  },
+  options
+};
+var ctx = document.getElementById("myAreaChart");
+
+
+var myChart = new Chart(ctx,config);
+
+
+
+</script>
+@else
     <script>
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.fonts = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -199,7 +255,7 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + 'kWh';
+          return datasetLabel + ': ' + tooltipItem.yLabel + ' kWh';
         }
       }
     }
@@ -207,4 +263,7 @@ var myLineChart = new Chart(ctx, {
 });
 
 </script>
-    < @endpush @endsection
+
+@endif
+@endpush 
+@endsection
