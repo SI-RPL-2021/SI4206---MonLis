@@ -25,3 +25,4 @@ Route::get('/history', [App\Http\Controllers\HistoryController::class, 'history'
 Route::get('/profile', [App\Http\Controllers\dashboard::class, 'profile'])->name('profile');
 Route::get('/tools', [App\Http\Controllers\dashboard::class, 'tools'])->name('tools');
 Route::get('/security', [App\Http\Controllers\dashboard::class, 'security'])->name('security');
+Route::get('/addtools', [App\Http\Controllers\DeviceController::class, 'addtools'])->name('addtools');

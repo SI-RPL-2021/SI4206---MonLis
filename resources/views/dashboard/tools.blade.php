@@ -15,7 +15,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Electric meter that you have </h6>
                 </div>
                 <div class="col-6">
-                    <button type="button" class="btn btn-primary">+ add new tools</button>
+                    <a type="button" class="btn btn-primary" href="{{route('addtools')}}">+ add new tools</a>
                 </div>
             </div>
         </div>
