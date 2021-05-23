@@ -20,15 +20,25 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Recipient's username"
-                    aria-label="Recipient's username" aria-describedby="button-addon2">
-                <a href="#" class="btn btn-danger btn-icon-split">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-trash"></i>
-                    </span>
-                </a>
+        @foreach($user_device as $dev)
+            <div class="card border-left-primary shadow h-100 mb-2 rounded">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2">Tools {{$loop->iteration}}
+                        </div>
+                        <div class="col-md-9">{{$dev -> device_name}}
+                        </div>
+                        <div class="col-md-1">
+                            <a href="#" class="btn btn-danger btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-trash"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
+            @endforeach
         </div>
     </div>
 </div>

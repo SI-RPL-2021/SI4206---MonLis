@@ -149,7 +149,8 @@ class dashboard extends Controller
     }
     public function tools()
     {
-        return view('dashboard.tools');
+        $user_device=auth()->user()->device;
+        return view('dashboard.tools', compact('user_device'));
     }
     public function security()
     {
