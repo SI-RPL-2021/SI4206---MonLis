@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="card-body">
-        @foreach($user_device as $dev)
+            @foreach($user_device as $dev)
             <div class="card border-left-primary shadow h-100 mb-2 rounded">
                 <div class="card-body">
                     <div class="row">
@@ -29,11 +29,15 @@
                         <div class="col-md-9">{{$dev -> device_name}}
                         </div>
                         <div class="col-md-1">
-                            <a href="#" class="btn btn-danger btn-icon-split">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-trash"></i>
-                                </span>
-                            </a>
+                            <form method="POST" action="{{route('deleteTools')}}">
+                                @csrf
+                                <input type="hidden" value="{{$dev->id}}" name="id">
+                                <button type="submit" class="btn btn-danger btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
