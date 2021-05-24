@@ -28,3 +28,5 @@ Route::get('/security', [App\Http\Controllers\dashboard::class, 'security'])->na
 Route::get('/addtools', [App\Http\Controllers\DeviceController::class, 'addtools'])->name('addtools');
 Route::post('/addtoolsdata', [App\Http\Controllers\DeviceController::class, 'addToolsData'])->name('addToolsData');
 Route::post('/delete', [App\Http\Controllers\DeviceController::class, 'deleteTools'])->name('deleteTools');
+Route::get('/editTools/{id}', [App\Http\Controllers\DeviceController::class, 'edittools'])->name('editTools');
+Route::post('/editToolsdata/{id}', [App\Http\Controllers\DeviceController::class, 'editToolsData'])->name('editToolsData');

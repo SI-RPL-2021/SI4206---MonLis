@@ -27,6 +27,13 @@
                         <div class="col-md-2">Tools {{$loop->iteration}}
                         </div>
                         <div class="col-md-9">{{$dev -> device_name}}
+                        </div> 
+                        <div class="col-md-1">
+                        <a type="button" href="{{route('editTools',$dev->id)}}" class="btn btn-info btn-icon-split">
+                        <span class="icon text-white-50">
+                        <i class="fas fa-edit"></i>
+                            </span>
+                        </a>
                         </div>
                         <div class="col-md-1">
                             <form method="POST" action="{{route('deleteTools')}}">
