@@ -6,6 +6,12 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+    </div>
+    @endif
     <h1 class="h3 mb-4 text-gray-800">Buttons</h1>
 
     <div class="card shadow mb-4">
@@ -26,14 +32,14 @@
                     <div class="row">
                         <div class="col-md-2">Tools {{$loop->iteration}}
                         </div>
-                        <div class="col-md-9">{{$dev -> device_name}}
-                        </div> 
+                        <div class="col-md-8">{{$dev -> device_name}}
+                        </div>
                         <div class="col-md-1">
-                        <a type="button" href="{{route('editTools',$dev->id)}}" class="btn btn-info btn-icon-split">
-                        <span class="icon text-white-50">
-                        <i class="fas fa-edit"></i>
-                            </span>
-                        </a>
+                            <a type="button" href="{{route('editTools',$dev->id)}}" class="btn btn-info btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-edit"></i>
+                                </span>
+                            </a>
                         </div>
                         <div class="col-md-1">
                             <form method="POST" action="{{route('deleteTools')}}">
