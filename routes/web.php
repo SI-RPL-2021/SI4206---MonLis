@@ -17,7 +17,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [App\Http\Controllers\dashboard::class, 'home'])->name('dashboard-home');
@@ -30,3 +29,10 @@ Route::post('/addtoolsdata', [App\Http\Controllers\DeviceController::class, 'add
 Route::post('/delete', [App\Http\Controllers\DeviceController::class, 'deleteTools'])->name('deleteTools');
 Route::get('/editTools/{id}', [App\Http\Controllers\DeviceController::class, 'edittools'])->name('editTools');
 Route::post('/editToolsdata/{id}', [App\Http\Controllers\DeviceController::class, 'editToolsData'])->name('editToolsData');
+
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'home'])->name('dashboard-admin');
+Route::get('/listuser', [App\Http\Controllers\AdminController::class, 'listuser'])->name('listuser');
+Route::get('/listdevice', [App\Http\Controllers\AdminController::class, 'listdevice'])->name('listdevice');
+
+Route::get('/listuser/{id}/devices', [App\Http\Controllers\AdminController::class, 'userdevice'])->name('userdevice');
+

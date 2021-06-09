@@ -12,7 +12,7 @@ class dashboard extends Controller
 {
     public function home (Request $request)
     {
-        
+        if(auth()->user()->role_id == 2){
         # relasi user ke table device
         $user_id=auth()->user()->device; 
         $id_device=[];
@@ -131,7 +131,7 @@ class dashboard extends Controller
         $banding_month=history_daily::whereIn('device_id',$id_device)->whereMonth('tanggal_pemakaian',now()->subMonth()->month)->sum('pemakaian_energi') ??0;
 
 
-    if($today != 0 && $banding_today !=0  && $week != 0 && $banding_week !=0 && $month != 0 && $banding_month !=0){
+        if($today != 0 && $banding_today !=0  && $week != 0 && $banding_week !=0 && $month != 0 && $banding_month !=0){
         $notif_today = round((($today - $banding_today)/$banding_today*100),1);
         $notif_week = round((($week - $banding_week)/$banding_week*100),1);
         $notif_month = round((($month - $banding_month)/$banding_month*100),1);
@@ -140,6 +140,11 @@ class dashboard extends Controller
     
         return view('dashboard.home',['pemakaian'=> $pemakaian, 'tanggal'=> $tanggal,'today'=>$today, 'month'=>$month, 'week'=>$week, 'dropdown_item'=>$dropdown_item, 
         'notif_today' => $notif_today ?? 0,'notif_month' => $notif_month ?? 0,'notif_week' => $notif_week ?? 0]);
+    }
+
+    else{
+        return redirect()->route('dashboard-admin');
+    }
     }
     
 
