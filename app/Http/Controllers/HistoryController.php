@@ -39,6 +39,7 @@ class HistoryController extends Controller
                 $pemakaian_sebelum[]= $datas ->pemakaian_energi;
             }
             // dd($pemakaian_sebelum); 
+            $before="Konsumsi Listrik /Jam 1 hari yang lalu";
         }
     }
 
@@ -76,7 +77,7 @@ class HistoryController extends Controller
           }
         #associative array into an indexed array
         $pemakaian = array_values($MonthData);
-    
+          
         $dropdown_item="by weeks";
             if($request->filter=="averages"){
                 $MonthData=history_daily::whereIn('device_id',$id_device)
@@ -96,6 +97,7 @@ class HistoryController extends Controller
                 ->toArray();
                 #associative array into an indexed array
                 $pemakaian_sebelum = array_values($MonthData);
+                $before="Konsumsi Listrik Mingguan 1 bulan yang lalu";
             }
         
     }elseif($request->sort=="month"){
@@ -141,6 +143,7 @@ class HistoryController extends Controller
             #associative array into an indexed array
             $pemakaian_sebelum = array_values($MonthData);
             // dd($pemakaian_sebelum);
+            $before="Konsumsi Listrik Bulanan 1 Tahun yang lalu";
         }
     }
             else{
@@ -167,6 +170,7 @@ class HistoryController extends Controller
                         $pemakaian_sebelum[]= $datas ->pemakaian_energi;
                     }
                     // dd($pemakaian_sebelum); 
+                $before="Konsumsi Listrik 1 Minggu yang lalu";
                 }
             }
         #################################################################
@@ -182,7 +186,7 @@ class HistoryController extends Controller
             ->map(function ($row) {
                 return $row->sum('pemakaian_energi');
             })->avg();
-
-            return view('dashboard.history',['pemakaian'=> $pemakaian, 'tanggal'=> $tanggal, 'dropdown_item'=>$dropdown_item,'pemakaian_sebelum'=> $pemakaian_sebelum,'avg_year'=> $avg_year]);
+            // dd($avg_year);
+            return view('dashboard.history',['pemakaian'=> $pemakaian, 'tanggal'=> $tanggal, 'dropdown_item'=>$dropdown_item,'pemakaian_sebelum'=> $pemakaian_sebelum,'avg_year'=> $avg_year, 'before'=> $before ?? 0,]);
         }
 }

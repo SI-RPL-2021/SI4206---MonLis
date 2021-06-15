@@ -20,6 +20,12 @@
       <form method="POST" action="{{route('addToolsData')}}">
         @csrf
         <div class="mb-3 row">
+          <label for="devicename" class="col-sm-2 col-form-label">Device ID</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="devicename" name="device_id">
+          </div>
+        </div>
+        <div class="mb-3 row">
           <label for="devicename" class="col-sm-2 col-form-label">Device Name</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" id="devicename" name="device_name">

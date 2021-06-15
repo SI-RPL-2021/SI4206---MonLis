@@ -16,11 +16,24 @@ class dashboard extends Controller
         # relasi user ke table device
         $user_id=auth()->user()->device; 
         $id_device=[];
+        $id_device_name=[];
         # Ambil data id_device yang dimiliki user yang sedang login dan dimasukan ke array
         foreach($user_id as $user_ids){
             $id_device[]=$user_ids-> id;
+            $id_device_name[]=$user_ids->deskripsi;
         }
-        // dd($id_device);
+        $pemakaian_per_device=history_daily::Wherein('device_id',$id_device)->get()
+        ->groupBy(function($date) {
+            return $date->device_id;
+        })
+        # Summing a value and grouping by date on a eloquent into collection
+        ->map(function ($row) {
+            return $row->sum('pemakaian_energi');
+        })
+        # laravel collection to array
+        ->toArray();
+        $pemakaian_per_devices = array_values($pemakaian_per_device);
+        // dd($pemakaian_per_devices);
         Carbon::setWeekStartsAt(Carbon::MONDAY);
         Carbon::setWeekEndsAt(Carbon::SUNDAY);
         # Set Time untuk penanggalan dari hari senin-minggu
@@ -64,10 +77,12 @@ class dashboard extends Controller
             })
             ->toArray();
             $tanggal=[];
+            $r = 1;
             foreach ($week_first_day as $key => $value) {
-                $tanggal[] = date('d F Y',strtotime($value))." (week- $key)";
+                $tanggal[] = date('d F Y',strtotime($value))." (week- $r)";
+            $r++;
             }
-            // dd($tanggal);
+            // dd($pemakaian);
 
             $dropdown_item="by weeks";
 
@@ -105,10 +120,13 @@ class dashboard extends Controller
 
             
             $pemakaian=[];
-            $tanggal=[];  
+            $tanggal=[]; 
+            $days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+            $r=0;
             foreach($data as $datas){
                 $pemakaian[]= $datas ->pemakaian_energi;
-                $tanggal[]= date('d F Y', strtotime($datas->tanggal_pemakaian));
+                $tanggal[]= "$days[$r] (".date('d F', strtotime($datas->tanggal_pemakaian)).")";
+                $r++;
             }
             $dropdown_item="by days";
         }
@@ -138,8 +156,8 @@ class dashboard extends Controller
         }
         // dd($banding_today, $today, $notif_today);
     
-        return view('dashboard.home',['pemakaian'=> $pemakaian, 'tanggal'=> $tanggal,'today'=>$today, 'month'=>$month, 'week'=>$week, 'dropdown_item'=>$dropdown_item, 
-        'notif_today' => $notif_today ?? 0,'notif_month' => $notif_month ?? 0,'notif_week' => $notif_week ?? 0]);
+        return view('dashboard.home',['pemakaian'=> $pemakaian, 'tanggal'=> $tanggal,'today'=>$today, 'month'=>$month, 'week'=>$week, 'dropdown_item'=>$dropdown_item, 'user_id' =>$user_id,
+        'notif_today' => $notif_today ?? 0,'notif_month' => $notif_month ?? 0,'notif_week' => $notif_week ?? 0, 'id_device' => $id_device,'id_device_name'=> $id_device_name,'pemakaian_per_devices'=> $pemakaian_per_devices]);
     }
 
     else{

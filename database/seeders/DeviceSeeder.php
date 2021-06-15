@@ -15,21 +15,31 @@ class DeviceSeeder extends Seeder
     {
         DB::table('devices')->insert([
             'user_id'=> '1',
+            'device_id'=> 'AML923',
             'device_name'=> 'Alat Monitor listrik',
-            'device_version'=> 'XK003',
-            'deskripsi'=> 'Memonitor automatis setiap harinya',
+            'device_version'=> '2.1.1',
+            'deskripsi'=> 'Cabang Toko 1',
         ]);
         DB::table('devices')->insert([
             'user_id'=> '1',
+            'device_id'=> 'AML132',
             'device_name'=> 'Alat setrum ceker',
-            'device_version'=> 'DM003',
-            'deskripsi'=> 'Memonitor automatis setiap harinya',
+            'device_version'=> '3.2.2',
+            'deskripsi'=> 'Cabang Toko 2',
+        ]);
+        DB::table('devices')->insert([
+            'user_id'=> '1',
+            'device_id'=> 'AML351',
+            'device_name'=> 'Alat setrum turbo',
+            'device_version'=> '1.2.2',
+            'deskripsi'=> 'Cabang Toko 3',
         ]);
         DB::table('devices')->insert([
             'user_id'=> '2',
+            'device_id'=> 'AML132',
             'device_name'=> 'Alat Monitor listrik',
-            'device_version'=> 'KM001',
-            'deskripsi'=> 'Memonitor automatis setiap harinya',
+            'device_version'=> '1.2.1',
+            'deskripsi'=> 'Kantor 1',
         ]);
     }
 }

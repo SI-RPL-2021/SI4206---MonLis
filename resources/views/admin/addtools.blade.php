@@ -1,4 +1,4 @@
-@extends('dashboard.master')
+@extends('admin.master')
 @section('content')
 <!-- End of Topbar -->
 
@@ -6,7 +6,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Edit Tools</h1>
+    <h1 class="h3 mb-4 text-gray-800">Add Tools User: {{$name}}</h1>
 
     <div class="card shadow mb-4">
         <div class="card-header">
@@ -17,41 +17,35 @@
             </div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{route('editToolsData',$device->id)}}">
+            <form method="POST" action="{{route('addtoolsuserdata',$user_id)}}">
                 @csrf
-                
                 <div class="mb-3 row">
                     <label for="devicename" class="col-sm-2 col-form-label">Device ID</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="devicename" name="device_id"
-                            value="{{$device->device_id}}" required>
+                        <input type="text" class="form-control" id="devicename" name="device_id">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="devicename" class="col-sm-2 col-form-label">Device Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="devicename" name="device_name"
-                            value="{{$device->device_name}}" required>
+                        <input type="text" class="form-control" id="devicename" name="device_name">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="version" class="col-sm-2 col-form-label">Device Version</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="version" name="device_version"
-                            value="{{$device->device_version}}" required>
+                        <input type="text" class="form-control" id="version" name="device_version">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="description" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="description" name="deskripsi"
-                            value="{{$device->deskripsi}}" required>
+                        <input type="text" class="form-control" id="description" name="deskripsi">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block"> Save changes </button>
-
             </form>
         </div>
     </div>
 </div>
-@endsection 
+@endsection

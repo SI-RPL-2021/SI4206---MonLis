@@ -18,17 +18,17 @@
             @endif
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item"
-                    href='{{route("history",["sort"=> request()->sort,"filter"=>"averages"])}}'>Average</a>
+                    href='{{route("history",["sort"=> request()->sort,"filter"=>"averages"])}}'>Bandingkan Pola Konsumsi</a>
             @if(request()->sort == "month")
             <a class="dropdown-item"
-                    href='{{route("history",["sort"=> request()->sort,"test"=>"test"])}}'>test</a>
+                    href='{{route("history",["sort"=> request()->sort,"test"=>"test"])}}'>Average</a>
             @endif
             </div>
             @if(request()->filter != null)
-            <button class="btn btn-secondary">Average Typically<a type="button" href ='{{route("history",["sort"=> request()->sort,"filter"=>NULL])}}' class="btn-close" style="height:0em;"></a></button>
+            <button class="btn btn-secondary">Perbandingan Pola Konsumsi Listrik<a type="button" href ='{{route("history",["sort"=> request()->sort,"filter"=>NULL])}}' class="btn-close" style="height:0em;"></a></button>
             @endif
             @if(request()->test != null)
-            <button class="btn btn-secondary">Average 3 Period<a type="button" href ='{{route("history",["sort"=> request()->sort,"filter"=>NULL])}}' class="btn-close" style="height:0em;"></a></button>
+            <button class="btn btn-secondary">Average<a type="button" href ='{{route("history",["sort"=> request()->sort,"filter"=>NULL])}}' class="btn-close" style="height:0em;"></a></button>
             @endif
         </div>
       </div>
@@ -62,16 +62,17 @@
                         <canvas id="myAreaChart"></canvas>
                     </div>
 
-                    <hr>
+                    <hr>@if(request()->test == NULL)
                     <div class="mt-4 small">
                         <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Current
+                            <i class="fas fa-circle text-primary"></i> Pemakaian Listrik Sekarang ini
                         </span>
                     </div>
+                    @endif
                     @if(request()->filter != null)
                     <div class="mt-4 small">
                         <span class="mr-2">
-                            <i class="fas fa-circle text-danger"></i> Typically Average
+                            <i class="fas fa-circle text-danger"></i> {{$before}}
                         </span>
                     </div>
                     @endif
@@ -99,6 +100,10 @@ const options = {
           yMax: {!!json_encode($avg_year)!!},
           borderColor: 'rgb(255, 99, 132)',
           borderWidth: 2,
+          label: {
+          content:'Average konsumsi Listrik tahun lalu',
+          enabled: true
+          }
         }
       }
     }
@@ -109,7 +114,7 @@ const config = {
   data: {
     labels:{!!json_encode($tanggal)!!},
     datasets: [{
-      label: 'My First Dataset',
+      label: 'Pemakaian Listrik Tahun ini',
       data: {!!json_encode($pemakaian)!!},
       fill: false,
       borderColor: 'rgb(75, 192, 192)',

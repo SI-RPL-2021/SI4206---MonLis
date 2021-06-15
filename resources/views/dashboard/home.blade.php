@@ -5,20 +5,24 @@
 .tooltip-inner {
     color: #fff;
     background: #FF9900;
-}.tooltip-arrow {
-  border-bottom-color: #000000; /* black */
-  border-width: 0 5px 5px;
+}
+
+.tooltip-arrow {
+    border-bottom-color: #000000;
+    /* black */
+    border-width: 0 5px 5px;
 }
 </style>
 @endpush
 <script>
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl);
+var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
 })
 </script>
 <!-- Begin Page Content -->
 <div class="container-fluid">
+    @if($id_device != NULL)
     <!-- Content Row -->
     <div class="row">
         <div class="col-xl-4 col-md-6 mb-4">
@@ -32,12 +36,16 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                         <div class="col mr-5">
                             <div class="h3 mb-0 font-weight-bold text-gray-900 text-nowrap  ">{{$today}} kWh</div>
                             <div class=" pb-2 text-gray-500">amount of usage electricity today</div>
-                            <div class="row" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Persentase perbandingan dengan hari sebelumnya">
+                            <div class="row" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Persentase perbandingan dengan hari sebelumnya">
                                 <div class="col-md-2">
-                                    <img class="img" src="{{ $notif_today <=0 ? ($notif_today <=-10 ? asset('image/down_green.svg') : asset('image/netral_gray_down.svg')): ($notif_today >=10 ? asset('image/up_red.svg') : asset('image/netral_gray_up.svg'))  }}"></img>
+                                    <img class="img"
+                                        src="{{ $notif_today <=0 ? ($notif_today <=-10 ? asset('image/down_green.svg') : asset('image/netral_gray_down.svg')): ($notif_today >=10 ? asset('image/up_red.svg') : asset('image/netral_gray_up.svg'))  }}"></img>
                                 </div>
-                                <div class="col-md-10" >
-                                    <p style="{{$notif_today <=-10 ? 'color:#27AE60' : ($notif_today >=10 ? 'color:#DE4444' : 'color:#BDBDBD') }}">{{abs($notif_today)}}%</p>
+                                <div class="col-md-10">
+                                    <p
+                                        style="{{$notif_today <=-10 ? 'color:#27AE60' : ($notif_today >=10 ? 'color:#DE4444' : 'color:#BDBDBD') }}">
+                                        {{abs($notif_today)}}%</p>
                                 </div>
                             </div>
                         </div>
@@ -50,19 +58,22 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             <div class="card border-left-primary shadow h-100 py-2 rounded">
                 <div class="card-body">
                     <div class="font-weight-bold text-lg mb-4" style="color:black">Usage This Month</div>
-                    <div class="row" >
+                    <div class="row">
                         <div class="col">
                             <img class="img-fluid" src="{{asset('image/vec2.png')}}"></img>
                         </div>
                         <div class="col mr-5">
                             <div class="h3 mb-0 font-weight-bold text-gray-900 text-nowrap">{{$month}} kWh</div>
                             <div class="pb-2 text-gray-500">amount of usage electricity this month</div>
-                            <div class="row" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Persentase perbandingan dengan bulan sebelumnya">
+                            <div class="row" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Persentase perbandingan dengan bulan sebelumnya">
                                 <div class="col-md-2">
-                                    <img class="img" src="{{ $notif_month <=0 ? asset('image/down_green.svg') : asset('image/up_red.svg')}}"></img>
+                                    <img class="img"
+                                        src="{{ $notif_month <=0 ? asset('image/down_green.svg') : asset('image/up_red.svg')}}"></img>
                                 </div>
                                 <div class="col-md-10">
-                                    <p style="{{$notif_month <=0 ? 'color:#27AE60' : 'color:#DE4444'}}">{{abs($notif_month)}}%</p>
+                                    <p style="{{$notif_month <=0 ? 'color:#27AE60' : 'color:#DE4444'}}">
+                                        {{abs($notif_month)}}%</p>
                                 </div>
                             </div>
                         </div>
@@ -82,12 +93,15 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                         <div class="col mr-5 pl-0">
                             <div class="h3 mb-0 font-weight-bold text-gray-900 text-nowrap">{{$week}} kWh</div>
                             <div class="pb-2 text-gray-500">amount of usage electricity this week</div>
-                            <div class="row" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Persentase perbandingan dengan minggu sebelumnya">
-                            <div class="col-md-2">
-                                    <img class="img" src="{{ $notif_week <=0 ? asset('image/down_green.svg') : asset('image/up_red.svg')}}"></img>
+                            <div class="row" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Persentase perbandingan dengan minggu sebelumnya">
+                                <div class="col-md-2">
+                                    <img class="img"
+                                        src="{{ $notif_week <=0 ? asset('image/down_green.svg') : asset('image/up_red.svg')}}"></img>
                                 </div>
                                 <div class="col-md-10">
-                                    <p style="{{$notif_week <=0 ? 'color:#27AE60' : 'color:#DE4444'}}">{{abs($notif_week)}}%</p>
+                                    <p style="{{$notif_week <=0 ? 'color:#27AE60' : 'color:#DE4444'}}">
+                                        {{abs($notif_week)}}%</p>
                                 </div>
                             </div>
                         </div>
@@ -137,7 +151,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Diagram</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Usage By Each Devices <br><span class="text-xs text-gray-500">(Pemakaian All Time)</span></h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -159,23 +173,39 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                         <canvas id="myPieChart"></canvas>
                     </div>
                     <div class="mt-4 text-center small">
+                   @foreach($user_id as $index => $label)
                         <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Direct
+                            <i class="fas fa-circle text-{{$index==0 ? 'primary' : ($index==1 ? 'success' : 'info')}}"></i> {{$label -> deskripsi}}
                         </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Social
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> Referral
-                        </span>
+                    @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@else
+<div class="card shadow mb-4 text-center">
+    <div class="card-body">
+        <div class="row pb-5">
+            <div class="col">
+                <h4 class="m-0 font-weight-bold text-primary">Kamu Belum Memiliki Tools Pengukur Listrik mu</h4>
+            </div>
+        </div>
+        <div class="img-fluid">
+            <img src="{{asset('image/add_tools.svg')}}" style="width:200px;"></img>
+        </div>
+        <div class="row pt-5">
+            <a type="button" class="btn btn-primary" href="{{route('tools')}}">+ Tambahkan tools kamu</a>
+        </div>
+    </div>
+</div>
+</div>
+
+@endif
 @push('js')
-<script>var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+<script>
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
@@ -294,7 +324,6 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          var kek = chart.datasets[tooltipItem.datasetIndex].first_day || '';
           return datasetLabel + ': ' + tooltipItem.yLabel + ' kWh';
         }
       }
@@ -302,6 +331,44 @@ var myLineChart = new Chart(ctx, {
   }
 });
 
+</script>
+
+<script>
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+
+// Pie Chart Example
+var ctx = document.getElementById("myPieChart");
+var myPieChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: {!!json_encode($id_device_name)!!},
+    datasets: [{
+      label: "Pemakaian",
+      data: {!!json_encode($pemakaian_per_devices)!!},
+      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
 </script>
 @endpush
 @endsection

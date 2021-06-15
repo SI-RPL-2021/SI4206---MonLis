@@ -30,9 +30,17 @@ Route::post('/delete', [App\Http\Controllers\DeviceController::class, 'deleteToo
 Route::get('/editTools/{id}', [App\Http\Controllers\DeviceController::class, 'edittools'])->name('editTools');
 Route::post('/editToolsdata/{id}', [App\Http\Controllers\DeviceController::class, 'editToolsData'])->name('editToolsData');
 
+Route::post('/editprofile/{id}', [App\Http\Controllers\ProfileController::class, 'editprofile'])->name('editprofile');
+Route::post('/security/{id}', [App\Http\Controllers\ProfileController::class, 'userpassword'])->name('userpassword');
+
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'home'])->name('dashboard-admin');
 Route::get('/listuser', [App\Http\Controllers\AdminController::class, 'listuser'])->name('listuser');
 Route::get('/listdevice', [App\Http\Controllers\AdminController::class, 'listdevice'])->name('listdevice');
 
 Route::get('/listuser/{id}/devices', [App\Http\Controllers\AdminController::class, 'userdevice'])->name('userdevice');
+Route::get('/listuser/{id}/addtools', [App\Http\Controllers\AdminController::class, 'addtoolsuser'])->name('addtoolsuser');
+Route::post('/listuser/{id}/addtools', [App\Http\Controllers\AdminController::class, 'addtoolsuserdata'])->name('addtoolsuserdata');
+Route::post('/listuser/{id}/deletetoolsuser', [App\Http\Controllers\AdminController::class, 'deletetoolsuser'])->name('deletetoolsuser');
 
+Route::get('/listuser/{id}/updatedevice', [App\Http\Controllers\AdminController::class, 'edittoolsuser'])->name('edittoolsuser');
+Route::post('/listuser/{id}/edittoolsuserdata', [App\Http\Controllers\AdminController::class, 'edittoolsuserdata'])->name('edittoolsuserdata');

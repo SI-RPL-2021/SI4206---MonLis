@@ -21,7 +21,6 @@
                     <h6 class="m-0 font-weight-bold text-primary">Electric meter that you have </h6>
                 </div>
                 <div class="col-6">
-                    <a type="button" class="btn btn-primary" href="{{route('addtools')}}">+ add new tools</a>
                 </div>
             </div>
         </div>
@@ -29,12 +28,13 @@
             <div class="card border-left-info shadow h-100 mb-2 rounded">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-2">No</div>
+                        <div class="col-md-1">No</div>
                         <div class="col-md-2">Nama User</div>
+                        <div class="col-md-2">Device ID</div>
                         <div class="col-md-2">Nama Device</div>
-                        <div class="col-md-2">Device version</div>
+                        <div class="col-md-1">Device Ver.</div>
                         <div class="col-md-2">Deskripsi</div>
-                        <div class="col-md-1">Edit</div><div class="col-md-1">Hapus</div>
+                        <div class="col-md-2">Action</div>
                     </div>
                 </div>
             </div>
@@ -44,13 +44,15 @@
                 <div class="card-body">
 
                     <div class="row">
-                        <div class="col-md-2">Tools {{$loop->iteration}}
+                        <div class="col-md-1">Tools {{$loop->iteration}}
                         </div>
                         <div class="col-md-2">{{$data -> user->name}}
                         </div>
+                        <div class="col-md-2">{{$data -> device_id}}
+                        </div>
                         <div class="col-md-2">{{$data -> device_name}}
                         </div>
-                        <div class="col-md-2">{{$data -> device_version}}
+                        <div class="col-md-1">{{$data -> device_version}}
                         </div>
                         <div class="col-md-2">{{$data -> deskripsi}}
                         </div>

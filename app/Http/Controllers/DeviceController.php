@@ -16,6 +16,7 @@ class DeviceController extends Controller
         $user_id=auth()->user()->id;
         $device=new device();
         $device->user_id = $user_id;
+        $device->device_id = $req->device_id;
         $device->device_name = $req->device_name;
         $device->device_version = $req->device_version;
         $device->deskripsi = $req->deskripsi;
@@ -36,6 +37,7 @@ class DeviceController extends Controller
 
     public function edittoolsData($id, Request $req){
         $device= device::find($id);
+        $device->device_id = $req->device_id;
         $device->device_name = $req->device_name;
         $device->device_version = $req->device_version;
         $device->deskripsi = $req->deskripsi;

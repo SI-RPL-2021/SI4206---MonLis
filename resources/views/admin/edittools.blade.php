@@ -1,4 +1,4 @@
-@extends('dashboard.master')
+@extends('admin.master')
 @section('content')
 <!-- End of Topbar -->
 
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{route('editToolsData',$device->id)}}">
+            <form method="POST" action="{{route('edittoolsuserdata',$device->id)}}">
                 @csrf
                 
                 <div class="mb-3 row">
@@ -48,10 +48,12 @@
                             value="{{$device->deskripsi}}" required>
                     </div>
                 </div>
+                <input type="hidden" value="{{$user_id}}" name="user_id">
+
                 <button type="submit" class="btn btn-primary btn-user btn-block"> Save changes </button>
 
             </form>
         </div>
     </div>
 </div>
-@endsection 
+@endsection
