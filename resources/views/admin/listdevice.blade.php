@@ -57,7 +57,7 @@
                         <div class="col-md-2">{{$data -> deskripsi}}
                         </div>
                         <div class="col-md-1">
-                            <a type="button" href="{{route('editTools',$data->id)}}"
+                            <a type="button" href="{{route('edittoolsuser',$data->id)}}"
                                 class="btn btn-info btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-edit"></i>
@@ -65,7 +65,7 @@
                             </a>
                         </div>
                         <div class="col-md-1">
-                            <form method="POST" action="{{route('deleteTools')}}">
+                            <form method="POST" action="{{route('deletetoolsuser',$data->user_id)}}">
                                 @csrf
                                 <input type="hidden" value="{{$data->id}}" name="id">
                                 <button type="submit" class="btn btn-danger btn-icon-split">

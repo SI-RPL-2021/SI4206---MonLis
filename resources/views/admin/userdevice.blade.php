@@ -29,11 +29,13 @@
             <div class="card border-left-info shadow h-100 mb-2 rounded">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-2">No</div>
-                        <div class="col-md-3">Nama Device</div>
-                        <div class="col-md-2">Device Version</div>
-                        <div class="col-md-3">deskripsi</div>
-                        <div class="col-md-1">Edit</div><div class="col-md-1">Hapus</div>
+                    <div class="col-md-1">No</div>
+                        <div class="col-md-2">Nama User</div>
+                        <div class="col-md-2">Device ID</div>
+                        <div class="col-md-2">Nama Device</div>
+                        <div class="col-md-1">Device Ver.</div>
+                        <div class="col-md-2">Deskripsi</div>
+                        <div class="col-md-2">Action</div>
                     </div>
                 </div>
             </div>
@@ -43,13 +45,17 @@
                 <div class="card-body">
 
                     <div class="row">
-                        <div class="col-md-2">Tools {{$loop->iteration}}
+                    <div class="col-md-1">Tools {{$loop->iteration}}
                         </div>
-                        <div class="col-md-3">{{$data ->device_name}}
+                        <div class="col-md-2">{{$data -> user->name}}
                         </div>
-                        <div class="col-md-2">{{$data ->device_version }}
+                        <div class="col-md-2">{{$data -> device_id}}
                         </div>
-                        <div class="col-md-3">{{$data ->deskripsi }}
+                        <div class="col-md-2">{{$data -> device_name}}
+                        </div>
+                        <div class="col-md-1">{{$data -> device_version}}
+                        </div>
+                        <div class="col-md-2">{{$data -> deskripsi}}
                         </div>
                         <div class="col-md-1">
                             <a type="button" href="{{route('edittoolsuser',$data->id)}}"

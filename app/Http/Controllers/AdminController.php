@@ -22,7 +22,6 @@ class AdminController extends Controller
     }
     public function listdevice(){
         $data_device=device::get();
-
         return view('admin.listdevice', compact('data_device'));
     }
     public function userdevice($id){

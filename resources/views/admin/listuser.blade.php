@@ -23,17 +23,30 @@
             </div>
         </div>
         <div class="card-body">
+        <div class="card border-left-info shadow h-100 mb-2 rounded">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2">No</div>
+                        <div class="col-md-3">Nama User</div>
+                        <div class="col-md-3">Email</div>
+                        <div class="col-md-3">No Hp</div>
+                        <div class="col-md-1">Action</div>
+                    </div>
+                </div>
+            </div>
             @foreach($data_user as $data)
             <div class="card border-left-primary shadow h-100 mb-2 rounded">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-2">User {{$loop->iteration}}
                         </div>
-                        <div class="col-md-4">{{$data -> name}}
+                        <div class="col-md-3">{{$data -> name}}
                         </div>
-                        <div class="col-md-4">{{$data -> nohp}}
+                        <div class="col-md-3">{{$data -> email}}
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">{{$data -> nohp}}
+                        </div>
+                        <div class="col-md-1">
                             <a type="button" href="{{route('userdevice',$data->id)}}"
                                 class="btn btn-info btn-icon-split">
                                 <span class="icon text-white-50">
